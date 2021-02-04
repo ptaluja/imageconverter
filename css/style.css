@@ -1,0 +1,80 @@
+.langImg {
+    background-image: url(/lang/langImg.png);
+    background-repeat: no-repeat;
+    display: block;
+    float: left;
+}
+
+#languagebar img,
+span {
+    vertical-align: middle;
+}
+
+.languagecur {
+    cursor: pointer;
+    border-color: #e2e2ea;
+    border-width: 1px;
+    border-style: solid;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+#menu i {
+    margin-right: 2px;
+}
+
+#menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#menu ul li {
+    display: block;
+    position: relative;
+    float: left;
+}
+
+#menu li ul {
+    display: none;
+}
+
+#menu ul li a {
+    display: block;
+    text-decoration: none;
+    color: #ffffff;
+    border-top: 1px solid #ffffff;
+    padding: 5px 15px 5px 15px;
+    background: #f0f0f9;
+    margin-left: 1px;
+    white-space: nowrap;
+}
+
+#menu ul li a:hover {
+    background: #e2e2ea;
+}
+
+#menu li:hover ul {
+    display: block;
+    position: absolute;
+}
+
+#menu li:hover li {
+    float: none;
+}
+
+#menu li:hover a {
+    background: #b9b9b9;
+}
+
+#menu li:hover li a:hover {
+    background: #e2e2ea;
+}
+
+#menu ul li {
+    list-style-position: inside;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    height: 30px;
+}
