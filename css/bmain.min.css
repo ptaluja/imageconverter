@@ -418,11 +418,11 @@ html {
     color: gray
 }
 
-#outputImages {
+#imagelist {
     text-align: center
 }
 
-#outputImages img {
+#imagelist canvas {
     margin: 5px;
     border: 1px solid #a4a5af
 }
