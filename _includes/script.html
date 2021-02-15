@@ -1,0 +1,79 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js" integrity="sha512-jzL0FvPiDtXef2o2XZJWgaEpVAihqquZT/tT89qCVaxVuHwJ/1DFcJ+8TBMXplSJXE8gLbVAUv+Lj20qHpGx+A==" crossorigin="anonymous">
+</script>
+<script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext('2d');
+    var input = document.getElementById("input");
+
+    //setting image resolution
+
+    function resolution() {
+        var height = document.getElementById("height").value;
+        var width = document.getElementById("width").value;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var image = new Image(width, height);
+            image.onload = function() {
+                canvas.width = image.width;
+                canvas.height = image.height;
+                canvas.style.border = "3px solid white";
+                ctx.drawImage(image, 0, 0, width, height);
+            }
+            image.src = event.target.result;
+        }
+        reader.readAsDataURL(input.files[0]);
+        alert("resolution set");
+    }
+
+
+
+
+    //displaying image into canvas
+
+
+    function convert(event) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var image = new Image();
+            image.onload = function() {
+                canvas.width = image.width;
+                canvas.height = image.height;
+                ctx.drawImage(image, 0, 0);
+                canvas.style.border = "3px solid white";
+
+            }
+            image.src = event.target.result;
+        }
+        reader.readAsDataURL(input.files[0]);
+
+    }
+
+
+
+
+    //downoading image
+
+    function download() {
+        var c = document.getElementById("c").value;
+        var but = document.getElementById("but");
+        but.innerHTML = "<a id='hello' class='btn btn-dark' style='color:red'>DOWNLOAD THE IMAGE</a>";
+        console.log(c);
+        if (c == "png") {
+            var an = 'image/png';
+        }
+        if (c == "jpeg" || c == "jpg") {
+            var an = 'image/jpeg';
+        }
+
+        canvas.toBlob(function(blob) {
+            var ans = window.URL.createObjectURL(blob);
+            var hello = document.getElementById("hello");
+            hello.setAttribute("download", "ans");
+            hello.setAttribute("href", ans);
+
+        }, an, 0.95);
+        alert("conversion done.Click download");
+
+    }
+</script>
