@@ -1,0 +1,6 @@
+first:
+  - input: <div class="row"><div class="col col-sm-12 col-md-12 col-lg-12 h4" style="color:white; font-family:'Lucida Console','Courier New', monospace">ENTER THE BILL AMOUNT<input id="amount" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ENTER THE AMOUNT"></div></div>
+
+  - input: <div class="row"><div class="col col-sm-12 col-md-12 col-lg-12 h4" style="color:white; font-family:'Lucida Console','Courier New', monospace">TIP   (IN PERCENTAGE)<input id="tip" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ENTER TIP PERCENTAGE"></div></div>
+
+  - input: <div class="row"><div class="col col-sm-12 col-md-12 col-lg-12 h4" style="color:white; font-family:'Lucida Console','Courier New', monospace;">NO. OF PEOPLE SHARING<input id="people" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=" NO. OF PEOPLE SHARING"></div></div>

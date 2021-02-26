@@ -1,14 +1,13 @@
 <script
-  src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"
-  integrity="sha512-jzL0FvPiDtXef2o2XZJWgaEpVAihqquZT/tT89qCVaxVuHwJ/1DFcJ+8TBMXplSJXE8gLbVAUv+Lj20qHpGx+A=="
-  crossorigin="anonymous"
-></script>
-<script
   src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js"
   integrity="sha512-UNbeFrHORGTzMn3HTt00fvdojBYHLPxJbLChmtoyDwB6P9hX5mah3kMKm0HHNx/EvSPJt14b+SlD8xhuZ4w9Lg=="
   crossorigin="anonymous"
 ></script>
-
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"
+  integrity="sha512-jzL0FvPiDtXef2o2XZJWgaEpVAihqquZT/tT89qCVaxVuHwJ/1DFcJ+8TBMXplSJXE8gLbVAUv+Lj20qHpGx+A=="
+  crossorigin="anonymous"
+></script>
 <script>
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
@@ -30,25 +29,25 @@
     }
   }
 
-  //downloading files  main part
   function convert() {
     if (input.files.length != 0) {
       var b = document.getElementById("b");
       b.onclick = function () {
-        if (height == "" || width == "") {
+        alert("image converted");
+        if (height == "" && width == "") {
           height = undefined;
           width = undefined;
         }
-        alert("image converted");
         var reader = new FileReader();
         reader.onload = function (event) {
           if (height == undefined && width == undefined) {
             var image = new Image();
             image.onload = function () {
+              w = image.naturalWidth;
+              h = image.naturalHeight;
               canvas.width = image.width;
               canvas.height = image.height;
               ctx.drawImage(image, 0, 0);
-              canvas.style.border = "2px solid white";
               canvas.style.marginTop = "30px";
             };
             image.src = event.target.result;
@@ -58,7 +57,6 @@
               canvas.width = image.width;
               canvas.height = image.height;
               ctx.drawImage(image, 0, 0, width, height);
-              canvas.style.border = "2px solid white";
               canvas.style.marginTop = "30px";
             };
             image.src = event.target.result;
@@ -66,46 +64,50 @@
         };
         reader.readAsDataURL(input.files[0]);
         //download button
-        var c = document.getElementById("c").value;
         var download = document.getElementById("but");
         var f = input.files[0]["name"];
         var ff = f.match(/^.*\./);
-
+        var p;
         download.innerHTML =
-          '<div class="xl:w-1/3 md:w-1/2 p-4" style="margin:auto"> <div class="border border-gray-200 p-6 rounded-lg"><h2 class="text-lg text-gray-900 font-medium title-font mb-2">' +
+          '<div class="xl:w-1/3 md:w-1/2 p-4" style="margin:auto"> <div class="border border-light-200 p-6 rounded-lg"><h2 class="text-lg text-gray-900 font-medium title-font mb-2">' +
           ff +
-          c +
+          "webp" +
           '</h2><p class="leading-relaxed text-base" id="setting">' +
           width +
           " X " +
           height +
-          '</p></div></div><br><a id="hello" class="btn btn-dark" style="color:red">DOWNLOAD THE IMAGE</a>';
-        if (height == undefined || width == undefined) {
+          '</p></div></div><br><a id="hello" class="btn btn-dark" download="convert" style="color:red">DOWNLOAD THE IMAGE</a>';
+
+        if (width == undefined && height == undefined) {
           var setting = document.getElementById("setting");
           setting.style.display = "none";
         }
         var hello = document.getElementById("hello");
         hello.onclick = function () {
-          if (c == "png") {
-            var an = "image/png";
+          var navUserAgent = navigator.userAgent;
+          if (
+            navUserAgent.indexOf("Firefox") != -1 ||
+            navUserAgent.indexOf("Safari") != -1
+          ) {
+            var ans = canvas.toDataURL("image/webp", 1);
+            var pt = ans.replace("png", "webp");
+            hello.href = pt;
           }
-          if (c == "jpeg" || c == "jpg") {
-            var an = "image/jpeg";
+          if ((p = navUserAgent.indexOf("Chrome") != -1)) {
+            canvas.toBlob(
+              function (blob) {
+                alert(p);
+                var ans = window.URL.createObjectURL(blob);
+                hello.href = ans;
+              },
+              "image/webp",
+              0.95
+            );
           }
-          canvas.toBlob(
-            function (blob) {
-              var ans = window.URL.createObjectURL(blob);
-              var and = input.files[0]["name"];
-              var a = and.match(/^.*\./);
-              saveAs(ans, a);
-            },
-            an,
-            0.95
-          );
         };
       };
     } else {
-      alert("please enter the files first");
+      alert("please enter the file first");
     }
   }
 </script>

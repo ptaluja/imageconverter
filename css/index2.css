@@ -1,0 +1,61 @@
+#input {
+  height: auto;
+  width: 30%;
+  margin: auto;
+}
+#height {
+  height: 40px;
+  width: 30%;
+  margin: auto;
+}
+#width {
+  height: 40px;
+  width: 30%;
+  margin: auto;
+}
+@media (max-width: 760px) {
+  #height,
+  #width,
+  #input {
+    width: 100%;
+  }
+  #width {
+    margin-top: 10px;
+  }
+}
+#resolution,
+#b {
+  border: 3px solid white;
+  margin: auto;
+  width: auto;
+  height: auto;
+  font-size: 20px;
+}
+
+@media (min-width: 760px) and (max-width: 1045px) {
+  #height,
+  #width,
+  #input {
+    width: 70%;
+  }
+  #width {
+    margin-top: 10px;
+  }
+}
+
+.container {
+  margin-top: 70px;
+  height: auto;
+}
+
+#canvas {
+  margin: auto;
+  width: 1px;
+  height: 1px;
+}
+
+.icon {
+  color: white;
+  font-size: 80px;
+  margin-top: -20px;
+}

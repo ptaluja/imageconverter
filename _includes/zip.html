@@ -1,0 +1,77 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"
+  integrity="sha512-XSIn6Z+o82v4Aumv+iHmw9/oEotMU4LRi7lSd4AESpfdekKVO4zt0hUZ+2iB8cRlvpQRWqeLXdCHQxTOL00zNw=="
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.1.0/jszip-utils.min.js"
+  integrity="sha512-3WaCYjK/lQuL0dVIRt1thLXr84Z/4Yppka6u40yEJT1QulYm9pCxguF6r8V84ndP5K03koI9hV1+zo/bUbgMtA=="
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.js"
+  integrity="sha512-B+gr+zLWg81qxVwvtYwKrmjvQtZKD/GGFF7jD80OfzbqFw+NsbS5faEqpCO7Q7oRw1bYi0+WLJf54j8Vm7NADw=="
+  crossorigin="anonymous"
+></script>
+
+<script>
+  var input = document.getElementById("input");
+  var arr = [];
+  var arr2 = [];
+
+  function f() {
+    console.log(input.files);
+    arr.push("<ul type='none'><li id='list'>");
+    for (var i = 0; i < input.files.length; i += 1) {
+      console.log(input.files);
+      arr2.push(input.files[i]);
+      if (arr2.length == 1) {
+        arr.push(
+          input.files.length +
+            " FILES <br />|<br />|<br />|---------" +
+            input.files[i].name
+        );
+      } else {
+        arr.push("<br>|<br />|<br />|---------" + input.files[i].name);
+      }
+    }
+    arr.push("</li></ul>");
+    document.getElementById("entryList").innerHTML = arr.join("");
+  }
+
+  function zip() {
+    alert(
+      "it might take some time in case of compressing larger files .Please click ok to continue compression"
+    );
+    if (input.files.length == 0) {
+      alert("please enter the files first");
+      location.reload();
+    }
+    var zip = new JSZip();
+    var files = arr2;
+    for (var j = 0; j < files.length; j += 1) {
+      var file = files[j];
+      zip.file(file["name"], file);
+      console.log("added", file["name"]);
+    }
+
+    zip
+      .generateAsync({
+        type: "blob",
+      })
+      .then(function (content) {
+        window.open(window.URL.createObjectURL(content));
+      });
+  }
+</script>

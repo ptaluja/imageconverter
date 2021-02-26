@@ -1,0 +1,15 @@
+.r {
+  font-family: "Lucida Console", "Courier New", monospace;
+  border: 5px solid white;
+  color: white;
+}
+
+.r h2 {
+  color: white;
+}
+
+@media (max-width: 450px) {
+  #reset {
+    margin-top: 20px;
+  }
+}

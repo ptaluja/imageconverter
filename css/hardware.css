@@ -1,0 +1,252 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.mfl {
+  float: left;
+  margin-left: 1%;
+}
+
+.mfl2 {
+  float: left;
+  margin-left: 6%;
+}
+
+.bg {
+  background-color: #181e25;
+}
+
+.bg1 {
+  border-radius: 25px;
+  border: 5px solid white;
+  background-color: red;
+}
+
+.bg2 {
+  background-color: #000000;
+}
+
+.warpper {
+  width: 100%;
+  height: 100vh;
+}
+
+.container {
+  height: 380px;
+  width: 90%;
+  margin: auto;
+  margin-top: 150px;
+}
+
+.main-l {
+  height: 350px;
+  width: 76%;
+  margin: 2% 0.5%;
+}
+
+.cunction {
+  height: 30px;
+  width: 5.31%;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.number {
+  height: 45px;
+  width: 6%;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.back {
+  width: 9%;
+}
+
+.eng {
+  line-height: 45px;
+}
+
+.caps {
+  width: 11%;
+}
+
+.shift {
+  width: 14.5%;
+}
+
+.space {
+  height: 55px;
+  width: 6%;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.sp {
+  width: 34%;
+}
+
+.aro {
+  width: 21.5%;
+}
+
+.arobtn {
+  background: red;
+  height: 55px;
+  width: 29%;
+}
+
+.arobtnsub {
+  height: 25px;
+  width: 100%;
+}
+
+.ardwn {
+  margin-top: 8px;
+}
+
+.mail-r {
+  height: 350px;
+  width: 22%;
+  margin: 2% 0.5%;
+}
+
+.lnum {
+  width: 78%;
+}
+
+.pgup {
+  height: 30px;
+  width: 31%;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.mfl3 {
+  float: left;
+  margin-left: 4%;
+}
+
+.calnub {
+  height: 45px;
+  width: 31%;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.calzeo {
+  height: 57px;
+  width: 66%;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.dot {
+  height: 57px;
+}
+
+.rsym {
+  width: 18%;
+}
+
+.end {
+  margin-bottom: 10px;
+  height: 30px;
+  color: #fff;
+  text-align: center;
+}
+
+.mins {
+  margin-bottom: 10px;
+  height: 45px;
+  color: #fff;
+  text-align: center;
+}
+
+.plus {
+  height: 98px;
+  margin-bottom: 10px;
+  color: #fff;
+  text-align: center;
+  line-height: 98px;
+}
+
+.enter {
+  height: 112px;
+  margin-bottom: 10px;
+  color: #fff;
+  text-align: center;
+  line-height: 112px;
+}
+
+.tab {
+  margin-right: 65%;
+}
+
+.mrt {
+  margin-right: 40px;
+}
+
+.sft {
+  margin-right: 110px;
+}
+
+.lent {
+  margin-left: 70px;
+}
+
+.lsft {
+  margin-left: 110px;
+}
+
+#result p {
+  width: 100%;
+  height: auto;
+  border: 3px solid green;
+  margin: auto;
+  font-size: 20px;
+  text-align: center;
+}
+
+#result {
+  height: 10vh;
+  width: 100%;
+  margin: auto;
+  border: 3px solid blue;
+}
+
+@media (max-width: 570px) {
+  #result p {
+    font-size: 15px;
+  }
+}
+
+#mouse {
+  height: 30vh;
+  width: 20%;
+  border: 3px solid green;
+  margin: auto;
+  border-radius: 20px 20px 150px 150px;
+}
+#mouse #one {
+  height: 50px;
+  width: 30%;
+  border: 3px solid green;
+  margin: auto;
+  border-radius: 20px 20px 150px 150px;
+}

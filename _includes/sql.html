@@ -1,0 +1,155 @@
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/0.3.2/js/sql.js"
+  integrity="sha512-oPc+qFCHM3DkxsNn2OtJzS3NS8Nkl87XGsOPsJmBYEeQkyEfVaKetewEjOg9le9kAMftoE7Y0WtMtAsko/v4mw=="
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"
+  integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ=="
+  crossorigin="anonymous"
+></script>
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js"
+  integrity="sha512-UNbeFrHORGTzMn3HTt00fvdojBYHLPxJbLChmtoyDwB6P9hX5mah3kMKm0HHNx/EvSPJt14b+SlD8xhuZ4w9Lg=="
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/TableExport/5.2.0/js/tableexport.min.js"
+  integrity="sha512-XmZS54be9JGMZjf+zk61JZaLZyjTRgs41JLSmx5QlIP5F+sSGIyzD2eJyxD4K6kGGr7AsVhaitzZ2WTfzpsQzg=="
+  crossorigin="anonymous"
+></script>
+<script>
+  ////display record
+  function handleFiles() {
+    var input = document.getElementById("input");
+    if (input.files.length == 0) {
+      alert("please enter the database file first ");
+    } else {
+      var query = document.getElementById("query").value;
+      var val = document.getElementById("query");
+      var bu = document.getElementById("bu");
+      var file = input.files[0];
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        openSqliteDb(event.target.result, query);
+      };
+      reader.readAsArrayBuffer(file);
+
+      var s = document.getElementById("pt");
+      s.style.background = "white";
+      s.style.height = "75vh";
+    }
+  }
+
+  function openSqliteDb(p, query) {
+    console.log(query);
+    const db = new SQL.Database(new Uint8Array(p));
+    var tables = db.exec(
+      "SELECT * FROM 'sqlite_master' WHERE type='table' OR type='view' ORDER BY name"
+    );
+    var b = [];
+    for (let m = 0; m < tables[0]["values"].length; m++) {
+      b[m] = tables[0]["values"][m][1];
+    }
+    console.log("value of b" + b[0]);
+    if (query == "") {
+      query = "select * from " + b[0];
+    }
+    //
+    for (let f = 0; f < b.length; f++) {
+      var g = query.match(b[f]);
+      if (g == b[f]) {
+        document.getElementById("name").innerHTML =
+          "<u>TABLE NAME</u>:   " + b[f];
+      }
+    }
+    //
+
+    sidebar(b);
+    //query execution
+    try {
+      var con = db.exec(query);
+    } catch (e) {
+      if (e) {
+        document.getElementById("p").innerHTML = "please enter a valid query";
+      }
+    }
+    //
+    console.log(con);
+    var arr = [];
+
+    arr.push(
+      "<table class='table' style='overflow: scroll' id='table'><thead class='thead-dark'><tr>"
+    );
+    con.forEach(myfunction);
+    //////////////columns
+    function myfunction(item, index) {
+      for (let i = 0; i < item["columns"].length; i++) {
+        var ans = item["columns"][i];
+        arr.push("<th>" + ans + "</th>");
+      }
+    }
+    arr.push("</tr>");
+
+    //////////////rows
+    for (let j = 0; j < con[0]["values"].length; j++) {
+      arr.push("<tr>");
+      for (let k = 0; k < con[0]["values"][j].length; k++) {
+        arr.push("<td>" + con[0]["values"][j][k] + "</td>");
+      }
+      arr.push("</tr>");
+    }
+    arr.push("</table>");
+    document.getElementById("p").innerHTML = arr.join("");
+
+    //download  button
+    download();
+    ///download button end
+  }
+
+  //side bar
+  function sidebar(arr) {
+    var arr2 = [];
+    arr2.push(
+      "<table class='table'><thead class='thead-dark'><tr><th>TABLES</th></tr>"
+    );
+    for (let l = 0; l < arr.length; l++) {
+      arr2.push(
+        "<tr><td class='nav' onclick='navclick(" +
+          JSON.stringify(arr[l]) +
+          ")'>" +
+          arr[l] +
+          "</td></tr>"
+      );
+    }
+    arr2.push("</table>");
+    var side = document.getElementById("side");
+    side.style.background = "white";
+    side.style.height = "75vh";
+    document.getElementById("sidebar").innerHTML = arr2.join("");
+  }
+
+  //downloading data
+  function download() {
+    document.getElementById("demo").innerHTML =
+      '<caption class="tableexport-caption" style="caption-side: bottom;"><button type="button" tableexport-id="43895a3-csv" class="button-default csv">Export to csv</button><button type="button" tableexport-id="52a638d-txt" class="button-default txt">Export to txt</button></caption>';
+    new TableExport(document.getElementById("table"));
+  }
+
+  ///side bar function
+  function navclick(ans) {
+    var bu = document.getElementById("bu");
+    var query = "Select * from " + ans;
+    document.getElementById("query").value = query;
+    bu.click();
+    document.getElementById("query").value = "";
+  }
+
+  //paste this code under the head tag or in a separate js file.
+  // Wait for window load
+  $(window).load(function () {
+    // Animate loader off screen
+    $(".se-pre-con").fadeOut("slow");
+  });
+</script>

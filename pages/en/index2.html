@@ -1,0 +1,31 @@
+---
+layout: feature
+lang: en
+fileName: en
+permalink: /
+---
+
+<link rel="stylesheet" href="css/index2.css" />
+<div class="container">
+  <div class="row">
+    <div class="col col-md-12 col-sm-12 col-lg-12">
+      <i class="far fa-images icon"></i>
+      <input
+        type="file"
+        id="input"
+        class="form-control"
+        onchange="convert()"
+      /><br />
+      <input type="text" id="height" placeholder="enter the height" />
+      <input type="text" id="width" placeholder="enter the width" />
+      <br /><br />
+      <button class="btn btn-danger" id="resolution" onclick="resolution()">
+        Set Resolution
+      </button>
+      <button class="btn btn-danger" id="b">Convert</button>
+      <canvas id="canvas"></canvas>
+      <span id="but"></span>
+    </div>
+  </div>
+</div>
+{% include pt1.html %}

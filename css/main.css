@@ -1,0 +1,14 @@
+@media (max-width: 590px) {
+  #input {
+    margin-right: 100px;
+  }
+}
+
+#format {
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+::placeholder {
+  font-size: 15px;
+  text-align: center;
+}

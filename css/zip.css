@@ -1,0 +1,32 @@
+.b {
+  border: 3px solid white;
+}
+
+#input {
+  width: 60%;
+  margin: auto;
+  height: 45px;
+}
+
+u {
+  margin-left: 100px;
+}
+#list {
+  font-size: 20px;
+  font-weight: bold;
+}
+@media (max-width: 780px) {
+  #list {
+    font-size: 15px;
+  }
+}
+
+#but {
+  padding: 6px 30px;
+}
+
+@media (max-width: 285px) {
+  #but {
+    margin-top: 20px;
+  }
+}

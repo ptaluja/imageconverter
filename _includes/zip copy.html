@@ -1,0 +1,26 @@
+<script>
+  var navUserAgent = navigator.userAgent;
+  var browserName = navigator.appName;
+  var browserVersion = "" + parseFloat(navigator.appVersion);
+  var majorVersion = parseInt(navigator.appVersion, 10);
+  var tempNameOffset, tempVersionOffset, tempVersion;
+
+  if ((tempVersionOffset = navUserAgent.indexOf("Opera")) != -1) {
+    browserName = "Opera";
+    browserVersion = navUserAgent.substring(tempVersionOffset + 6);
+  } else if ((tempVersionOffset = navUserAgent.indexOf("MSIE")) != -1) {
+    browserName = "Microsoft Internet Explorer";
+  } else if ((tempVersionOffset = navUserAgent.indexOf("Chrome")) != -1) {
+    browserName = "Chrome";
+  } else if ((tempVersionOffset = navUserAgent.indexOf("Safari")) != -1) {
+    browserName = "Safari";
+  } else if ((tempVersionOffset = navUserAgent.indexOf("Firefox")) != -1) {
+    browserName = "Firefox";
+  } else {
+    alert("none");
+  }
+
+  // trim version
+
+  alert("BrowserName = " + browserName);
+</script>

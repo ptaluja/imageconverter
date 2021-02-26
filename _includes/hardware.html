@@ -1,0 +1,63 @@
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"
+  integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ=="
+  crossorigin="anonymous"
+></script>
+<script>
+  var arr = [];
+  var ar = [];
+
+  var ans = document.querySelectorAll(
+    ".cunction,.space,.space .eng,.number,.number .eng,.pgup,.calnub,.calnum .eng,.end,.mins,.plus,.enter,.calzeo .eng,.arobtn ,.arobtn .arobtnsub"
+  );
+  for (let i = 0; i < ans.length; i++) {
+    ans[i].style.background = "white";
+    ans[i].style.color = "red";
+  }
+  function keyboard() {
+    $(document).ready(function () {
+      $("input,body").on("keydown", function (event) {
+        if (event.which == 32) {
+          arr[0] = "('Spacebar') pressed";
+        } else {
+          arr[0] = "('" + event.key + "') pressed";
+        }
+        var res = document.getElementsByClassName(event.which);
+        for (let i = 0; i < res.length; i++) {
+          console.log(res[i]);
+          res[i].style.background = "black";
+          res[i].style.color = "white";
+        }
+
+        document.getElementById("d").innerHTML = arr[0];
+        event.preventDefault();
+
+        document.onkeyup = function () {
+          for (let i = 0; i < res.length; i++) {
+            res[i].style.color = "red";
+            res[i].style.background = "white";
+          }
+        };
+      });
+    });
+  }
+
+  document.addEventListener(
+    "mousedown",
+    function (event) {
+      console.log(event.button);
+      if (event.button == 0) {
+        document.getElementById("d").innerHTML = "left button clicked";
+      } else if (event.button == 2) {
+        document.getElementById("d").innerHTML = "right button clicked";
+      } else if (event.button == 1) {
+        document.getElementById("d").innerHTML = "middle button clicked";
+      } else {
+        alert("strange button clicked");
+      }
+    },
+    true
+  );
+
+  keyboard();
+</script>

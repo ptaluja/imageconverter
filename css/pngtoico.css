@@ -1,0 +1,38 @@
+.dimensions {
+  width: 30%;
+}
+
+.heading {
+  color: white;
+}
+.col {
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 451px) and (max-width: 920px) {
+  .dimensions {
+    width: 50%;
+  }
+  #input {
+    width: 50%;
+  }
+}
+
+@media (max-width: 450px) {
+  .dimensions {
+    width: 100%;
+  }
+  #input {
+    width: 100%;
+  }
+}
+
+@media (min-width: 920px) {
+  .dimensions {
+    width: 30%;
+  }
+  #input {
+    width: 30%;
+  }
+}

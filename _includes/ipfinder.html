@@ -1,0 +1,34 @@
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"
+  integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ=="
+  crossorigin="anonymous"
+></script>
+<script>
+  process();
+  var arr = [];
+
+  function callback(response) {
+    var text = document.getElementById("hello");
+    text.innerHTML =
+      '<table class="table table-bordered text-light h6" style="border:5px solid white;width:100%;height:auto"><thead class="thead-dark"><tr><th scope="col">COLUMN</th><th scope="col">VALUE</th></tr></thead><tbody><tr><td>IPADDRESS(IPV4)</td><td>' +
+      response["IPv4"] +
+      "</td></tr><tr><td>CITY</td><td> " +
+      response["city"] +
+      "</td></tr><tr><td>COUNTRY NAME</td><td>" +
+      response["country_name"] +
+      "</td></tr><tr><td>POSTAL CODE</td><td>" +
+      response["postal"] +
+      "</td> </tr><tr><td>STATE</td><td> " +
+      response["state"] +
+      "</td></tr> <tr><td>COUNTRY CODE</td><td>" +
+      response["country_code"] +
+      "</td></tr></tbody></table>";
+  }
+
+  function process() {
+    $.ajax({
+      url: "https://geoip-db.com/jsonp/",
+      dataType: "jsonp",
+    });
+  }
+</script>
